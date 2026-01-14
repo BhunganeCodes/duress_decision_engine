@@ -1,24 +1,27 @@
 # Duress Decision Engine Logic Concept Simplistic Version.
 
 class DuressDecisionEngine:
+    def __init__(self, primary_pin: int):
+        self.primary_pin = primary_pin
+        self.duress_pin = int(str(primary_pin)[::-1])  # simple demo rule
 
-    def __init__(self):
-        pass
-
-    def risk_analysis(self, pin, requested_amount):
-        duress_pin = int(str(pin)[::-1])
-
-        if pin == duress_pin:
-            response = {
+    def risk_analysis(self, entered_pin: int, requested_amount: int):
+        if entered_pin == self.duress_pin:
+            return {
                 "approved": True,
                 "dispense_amount": 200,
                 "silent_alert": True,
                 "flag": "DURESS_EVENT"
             }
-        else:
-            response = {
+
+        if entered_pin == self.primary_pin:
+            return {
                 "approved": True,
                 "dispense_amount": requested_amount,
                 "silent_alert": False
             }
-        return response
+
+        return {
+            "approved": False,
+            "reason": "INVALID_PIN"
+        }
