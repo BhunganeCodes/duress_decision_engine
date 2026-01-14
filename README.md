@@ -42,3 +42,74 @@ The ATM interface remains unchanged, while backend systems respond intelligently
 
 ## 🧱 System Architecture (Conceptual)
 
+ATM Simulator (Frontend)
+↓
+Transaction Switch API
+↓
+Duress / Risk Decision Engine
+↓
+Core Banking Simulator
+↓
+Transaction Response
+
+
+> ⚠️ Note: All systems are simulated. No real banking infrastructure is accessed.
+
+---
+
+## 🧩 Components
+
+### 1. ATM Simulator
+- Mimics user interaction with an ATM
+- Captures PIN, withdrawal amount, location, and time
+- Sends transaction requests to the Transaction Switch
+
+### 2. Transaction Switch (API Layer)
+- Acts as a routing and validation layer
+- Forwards transactions to the Duress Engine
+- Represents real-world ATM switch behavior conceptually
+
+### 3. Duress / Risk Decision Engine (Core Innovation)
+- Evaluates whether a transaction is normal or coerced
+- Applies duress logic and configurable rules
+- Determines response behavior (e.g. limited cash, alerts)
+
+### 4. Core Banking Simulator
+- Mock account balances
+- Simulated approvals and declines
+- Ledger updates for demo purposes
+
+### 5. Admin Dashboard (Optional / Phase 2)
+- View flagged duress events
+- Monitor outcomes and system behavior
+- Demonstrate auditability and oversight
+
+---
+
+## ⚙️ Technology Stack (Proposed)
+
+**Backend**
+- Python
+- FastAPI
+- PostgreSQL / SQLite (for simulation)
+
+**Frontend**
+- React (ATM simulator & dashboard)
+
+**Other**
+- REST APIs
+- JSON-based transaction payloads
+
+---
+
+## 📦 Example Transaction Payload
+
+```json
+{
+  "card_id": "CARD-001",
+  "pin": "4321",
+  "amount": 1000,
+  "atm_id": "ATM-JHB-09",
+  "location": "Johannesburg",
+  "timestamp": "2026-01-14T21:32:00"
+}
