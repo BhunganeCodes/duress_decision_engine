@@ -3,9 +3,9 @@
 class DuressDecisionEngine:
     def __init__(self, primary_pin: int):
         self.primary_pin = primary_pin
-        self.duress_pin = int(str(primary_pin)[::-1])  # simple demo rule
+        self.duress_pin = int(str(primary_pin)[::-1])  # demo rule
 
-    def risk_analysis(self, entered_pin: int, requested_amount: int):
+    def analyze(self, entered_pin: int, requested_amount: int):
         if entered_pin == self.duress_pin:
             return {
                 "approved": True,
@@ -26,8 +26,9 @@ class DuressDecisionEngine:
             "reason": "INVALID_PIN"
         }
 
+
 first_test = DuressDecisionEngine(1236)
-response = first_test.risk_analysis(6321, 2500)
+response = first_test.analyze(6321, 2500)
 
 if response["silent_alert"] == True:
     ...
