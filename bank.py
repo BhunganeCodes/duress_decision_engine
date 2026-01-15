@@ -8,14 +8,19 @@ class Bank:
         return f"Congratulations, new account created at {self.name}"
 
 class Account(Bank):
-    def __init__(self):
-        ...
+    def __init__(self, balance=0):
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        return f"Deposit of R{amount} successfully deposited"
 
     def new_acc(self):
-        return Bank.create_account()
+        return self.Bank.create_account()
 
 absa = Bank("ABSA")
-print(absa.create_account())
+user1 = Account().new_acc()
+print(user1)
 
 fnb = Bank("FNB")
 print(fnb.create_account())
