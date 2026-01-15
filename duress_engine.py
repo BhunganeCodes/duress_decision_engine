@@ -25,3 +25,10 @@ class DuressDecisionEngine:
             "approved": False,
             "reason": "INVALID_PIN"
         }
+
+first_test = DuressDecisionEngine(1236)
+response = first_test.risk_analysis(6321, 2500)
+
+if response["silent_alert"] == True:
+    ...
+    # Add logic to send a silent trigger to Central Banking System
