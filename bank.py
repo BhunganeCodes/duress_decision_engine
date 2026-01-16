@@ -4,10 +4,21 @@ from duress_engine import DuressDecisionEngine
 import random
 
 class BankCard:
+    cards_issued = set()
+
     def __init__(self, card_number, expiry_date, cvv):
-        self.card_number = card_number
+        self.card_number = self.generate_number()
         self.expiry_date = expiry_date
         self.cvv = cvv
+    
+    def generate_number(self):
+        number = "".join(str(random.randint(0, 9)) for _ in range(16))
+
+        while True:
+            if number not in BankCard.cards_issued:
+                BankCard.cards_issued.add(number)
+                return number
+
 
 
 class Bank:
