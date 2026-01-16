@@ -2,14 +2,15 @@
 import uuid
 from duress_engine import DuressDecisionEngine
 import random
+from datetime import datetime
 
 class BankCard:
     cards_issued = set()
 
-    def __init__(self, card_number, expiry_date, cvv):
+    def __init__(self):
         self.card_number = self.generate_number()
-        self.expiry_date = expiry_date
-        self.cvv = cvv
+        self.expiry_date = self.generate_expiry_date()
+        # self.cvv = cvv
     
     def generate_number(self):
         number = "".join(str(random.randint(0, 9)) for _ in range(16))
@@ -18,7 +19,15 @@ class BankCard:
             if number not in BankCard.cards_issued:
                 BankCard.cards_issued.add(number)
                 return number
+    
+    def generate_expiry_date(self):
+        current_year = datetime.now().year
+        current_month = datetime.now().month
 
+        expiry_year = current_year + random.randint(3, 5)
+        expiry_month = random.randint(1, 12)
+
+        return f"{expiry_month:02d}/{str(expiry_year)[-2:]}"
 
 
 class Bank:
