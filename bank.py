@@ -10,7 +10,7 @@ class BankCard:
     def __init__(self):
         self.card_number = self.generate_number()
         self.expiry_date = self.generate_expiry_date()
-        # self.cvv = cvv
+        self.cvv = self.generate_cvv()
     
     def generate_number(self):
         number = "".join(str(random.randint(0, 9)) for _ in range(16))
@@ -28,6 +28,9 @@ class BankCard:
         expiry_month = random.randint(1, 12)
 
         return f"{expiry_month:02d}/{str(expiry_year)[-2:]}"
+    
+    def generate_cvv(self):
+        return f"{random.randint(100, 999)}"
 
 
 class Bank:
