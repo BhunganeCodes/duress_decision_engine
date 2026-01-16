@@ -1,6 +1,14 @@
 # The Bank Class Where CBS Logic Will Be Found...
 import uuid
 from duress_engine import DuressDecisionEngine
+import random
+
+class BankCard:
+    def __init__(self, card_number, expiry_date, cvv):
+        self.card_number = card_number
+        self.expiry_date = expiry_date
+        self.cvv = cvv
+
 
 class Bank:
     def __init__(self, name: str):
